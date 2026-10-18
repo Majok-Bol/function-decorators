@@ -1,4 +1,4 @@
-
+from functools import wraps
 # A function is a reusable block of code that performs a task
 # def greet():
 #     print("Hello world")
@@ -210,6 +210,9 @@ introduce(name="Napoleon",age=25,city="Memphis")
 
 #decorator
 def code_decorator(fn):
+    # @wraps(fn) copies important metadata from fn to wrapper, including the original function's name, documentation string, and annotations.
+    #  It also sets __wrapped__ to reference the original function.
+    @wraps(fn)
     def code_wrapper(*language):
         print("--Iam learning:--")
         fn(*language)
@@ -221,3 +224,12 @@ def learning(*args):
         print(lang)
 learning("HTML","JSON")
 learning("C#","Java","API testing","Networking")
+
+
+#before using @wraps(fn)
+# print(learning.__name__) #code_wrapper
+# print(learning.__doc__) #None
+
+#after using @wraps(fn)
+print("Function name: ",learning.__name__) #
+print("Documentation: ",learning.__doc__) #
